@@ -7,18 +7,26 @@
     - name: Team PYQFort
   episodes:
     - id: ymca-biology-2024
-      title: JC Bose University (YMCA) Biology 2024 – Audio Summary
+      title: YMCA Biology 2024
       college: ymca
       branch: biology
       year: 2024
       audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/biology/ymca-biology-2024.mp3
-      duration: "12:45"
-      published: 2025-08-01
+      duration: "20:51"
+      published: 2025-08-10
+    - id: ymca-biology-set-1-2023
+      title: YMCA Biology Set 1 2023
+      college: ymca
+      branch: biology
+      year: 2023
+      audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/biology/ymca-biology-set-1-2023.mp3
+      duration: "15:11"
+      published: 2025-08-10
     - id: nit-kur-env-science-2023
-      title: NIT Kurukshetra Environmental Science 2023 – Audio Summary
+      title: NIT Kurukshetra Environmental Science 2023
       college: nit-kur
       branch: env-science
       year: 2023
       audio_url: /PraxPod/assets/audio/pyq-discussions/nit-kur/env-science/nit-kur-env-science-2023.mp3
-      duration: "10:12"
-      published: 2025-08-02
+      duration: "21:54"
+      published: 2025-08-10

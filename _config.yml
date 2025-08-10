@@ -2,7 +2,7 @@
 title: PraxPod
 description: Stream audio summaries and discussions for PYQs.
 baseurl: "/PraxPod"
-url: "https://<your-username>.github.io" # replace with your GH username/org
+url: "" # replace with your GH username/org
 
 markdown: kramdown
 highlighter: rouge

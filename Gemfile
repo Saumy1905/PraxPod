@@ -13,3 +13,8 @@ end
 
 # Add webrick for Ruby 3.0+ compatibility
 gem "webrick", "~> 1.7"
+
+gem "csv"
+gem "base64"
+gem "bigdecimal"
+gem "logger"

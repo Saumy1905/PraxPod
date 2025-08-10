@@ -1,21 +1,24 @@
-- podcast_id: pyq-discussions
-  title: PYQ Discussions
-  description: "In-depth discussions and analysis of previous year question papers."
-  cover_image: "/assets/audio/covers/default-cover.jpg"
+# _data/podcasts.yml
+- id: pyq-discussions
+  name: PYQ Discussions
+  description: Audio discussions and summaries of previous year questions.
+  cover: /PraxPod/assets/audio/covers/default-cover.jpg
+  hosts:
+    - name: Team PYQFort
   episodes:
-    - title: "YMCA Biology 2024 Discussion"
-      slug: ymca-biology-2024
-      description: "A detailed breakdown of the 2024 Biology paper from JC Bose University (YMCA)."
-      audio_file: "/assets/audio/pyq-discussions/ymca/biology/ymca-biology-2024.mp3"
+    - id: ymca-biology-2024
+      title: JC Bose University (YMCA) Biology 2024 – Audio Summary
       college: ymca
-      subject: biology
+      branch: biology
       year: 2024
-
-    - title: "NIT Kurukshetra Env. Science 2023 Analysis"
-      slug: nit-kur-env-science-2023
-      description: "Analysis of the Environmental Science paper from NIT Kurukshetra, 2023."
-      audio_file: "/assets/audio/pyq-discussions/nit-kur/env-science/nit-kur-env-science-2023.mp3"
+      audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/biology/ymca-biology-2024.mp3
+      duration: "12:45"
+      published: 2025-08-01
+    - id: nit-kur-env-science-2023
+      title: NIT Kurukshetra Environmental Science 2023 – Audio Summary
       college: nit-kur
-      subject: env-science
+      branch: env-science
       year: 2023
-
+      audio_url: /PraxPod/assets/audio/pyq-discussions/nit-kur/env-science/nit-kur-env-science-2023.mp3
+      duration: "10:12"
+      published: 2025-08-02

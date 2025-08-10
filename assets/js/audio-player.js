@@ -1,89 +1,321 @@
-// --- assets/js/audio-player.js ---
+// assets/js/audio-player.js
+(function() {
+  function formatTime(sec) {
+    if (isNaN(sec) || sec === null || sec === undefined) return '--:--';
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60);
+    return `${m}:${s < 10 ? '0' + s : s}`;
+  }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const audioPlayer = document.getElementById('audio-player');
-    if (!audioPlayer) return;
+  document.querySelectorAll('.audio-player').forEach(player => {
+    const audio = player.querySelector('.audio-el');
+    const playBtn = player.querySelector('[data-action="play-pause"]');
+    const backBtn = player.querySelector('[data-action="back-15"]');
+    const fwdBtn = player.querySelector('[data-action="fwd-30"]');
+    const seek = player.querySelector('.seek-bar');
+    const vol = player.querySelector('.volume-bar');
+    const speed = player.querySelector('.speed-select');
+    const current = player.querySelector('.current-time');
+    const total = player.querySelector('.total-time');
 
-    const audio = document.getElementById('audio-element');
-    const playPauseBtn = document.getElementById('play-pause-btn');
-    const playIcon = playPauseBtn.querySelector('.fa-play');
-    const pauseIcon = playPauseBtn.querySelector('.fa-pause');
-    const progressBar = document.getElementById('progress-bar');
-    const currentTimeEl = document.getElementById('current-time');
-    const durationEl = document.getElementById('duration');
-    const volumeBar = document.getElementById('volume-bar');
-    const volumeBtn = document.getElementById('volume-btn');
-    const volumeIcon = volumeBtn.querySelector('i');
+    // Validation check
+    if (!audio || !playBtn) {
+      console.warn('Audio player: missing essential elements');
+      return;
+    }
 
-    // Play/Pause functionality
-    playPauseBtn.addEventListener('click', () => {
-        if (audio.paused) {
-            audio.play();
-        } else {
-            audio.pause();
+    // Simple state tracking
+    let isSeeking = false;
+    let wasPlaying = false;
+    let currentPlayPromise = null;
+    let seekDebounceTimer = null;
+    let skipDebounceTimer = null;
+
+    // Robust play function with promise handling
+    async function playAudio() {
+      try {
+        // Wait for any existing promise to complete
+        if (currentPlayPromise) {
+          try {
+            await currentPlayPromise;
+          } catch (e) {
+            // Ignore previous promise errors
+          }
         }
-    });
 
-    audio.addEventListener('play', () => {
-        playIcon.style.display = 'none';
-        pauseIcon.style.display = 'block';
-    });
+        if (audio.paused) {
+          currentPlayPromise = audio.play();
+          await currentPlayPromise;
+          currentPlayPromise = null;
+        }
+      } catch (error) {
+        currentPlayPromise = null;
+        
+        // Only log significant errors
+        if (error.name !== 'AbortError') {
+          console.warn('Play interrupted:', error.name);
+        }
+      }
+    }
 
-    audio.addEventListener('pause', () => {
-        playIcon.style.display = 'block';
-        pauseIcon.style.display = 'none';
-    });
+    // Simple pause function
+    function pauseAudio() {
+      try {
+        if (!audio.paused) {
+          audio.pause();
+        }
+      } catch (error) {
+        console.warn('Pause error:', error);
+      }
+    }
 
-    // Progress bar functionality
-    audio.addEventListener('timeupdate', () => {
-        const progress = (audio.currentTime / audio.duration) * 100;
-        progressBar.value = progress;
-        currentTimeEl.textContent = formatTime(audio.currentTime);
-    });
+    // Update UI based on audio state
+    function updateUI() {
+      if (playBtn) {
+        playBtn.innerHTML = audio.paused ? 
+          '<i class="fas fa-play"></i>' : 
+          '<i class="fas fa-pause"></i>';
+      }
+    }
 
-    progressBar.addEventListener('input', () => {
-        const time = (progressBar.value / 100) * audio.duration;
-        audio.currentTime = time;
-    });
+    // Debounced seek to prevent overwhelming the audio element
+    function debouncedSeek(value) {
+      if (seekDebounceTimer) {
+        clearTimeout(seekDebounceTimer);
+      }
+      
+      seekDebounceTimer = setTimeout(() => {
+        if (audio.duration && !isNaN(audio.duration)) {
+          try {
+            const newTime = (value / 100) * audio.duration;
+            audio.currentTime = newTime;
+          } catch (error) {
+            console.warn('Seek error:', error);
+          }
+        }
+      }, 100); // Conservative debounce timing
+    }
 
-    // Display duration
+    // Basic event listeners
     audio.addEventListener('loadedmetadata', () => {
-        durationEl.textContent = formatTime(audio.duration);
+      if (total) total.textContent = formatTime(audio.duration);
+      if (seek) seek.value = 0;
     });
+
+    audio.addEventListener('timeupdate', () => {
+      if (!isSeeking && audio.duration && !isNaN(audio.duration)) {
+        if (current) current.textContent = formatTime(audio.currentTime);
+        if (seek) seek.value = (audio.currentTime / audio.duration) * 100;
+      }
+    });
+
+    audio.addEventListener('play', updateUI);
+    audio.addEventListener('pause', updateUI);
+
+    audio.addEventListener('error', (e) => {
+      console.error('Audio error:', {
+        code: audio.error?.code,
+        message: audio.error?.code === 2 ? 'Network error - audio may be loading' : 'Audio error'
+      });
+      updateUI();
+    });
+
+    // Play/Pause control
+    playBtn.addEventListener('click', async () => {
+      if (audio.paused) {
+        await playAudio();
+      } else {
+        pauseAudio();
+      }
+    });
+
+    // Skip controls with debouncing to prevent rapid triggering
+    if (backBtn) {
+      backBtn.addEventListener('click', () => {
+        if (skipDebounceTimer) {
+          clearTimeout(skipDebounceTimer);
+        }
+        
+        skipDebounceTimer = setTimeout(() => {
+          wasPlaying = !audio.paused;
+          
+          try {
+            audio.currentTime = Math.max(0, audio.currentTime - 15);
+            
+            // Resume if was playing
+            if (wasPlaying) {
+              setTimeout(() => playAudio(), 50);
+            }
+          } catch (error) {
+            console.warn('Skip back error:', error);
+          }
+        }, 100); // Debounce rapid clicks
+      });
+    }
+
+    if (fwdBtn) {
+      fwdBtn.addEventListener('click', () => {
+        if (skipDebounceTimer) {
+          clearTimeout(skipDebounceTimer);
+        }
+        
+        skipDebounceTimer = setTimeout(() => {
+          wasPlaying = !audio.paused;
+          
+          try {
+            if (audio.duration && !isNaN(audio.duration)) {
+              audio.currentTime = Math.min(audio.duration, audio.currentTime + 30);
+            } else {
+              audio.currentTime = audio.currentTime + 30;
+            }
+            
+            // Resume if was playing
+            if (wasPlaying) {
+              setTimeout(() => playAudio(), 50);
+            }
+          } catch (error) {
+            console.warn('Skip forward error:', error);
+          }
+        }, 100); // Debounce rapid clicks
+      });
+    }
+
+    // Simplified seek bar handling
+    if (seek) {
+      // Start seeking
+      seek.addEventListener('mousedown', () => {
+        isSeeking = true;
+        wasPlaying = !audio.paused;
+        
+        if (wasPlaying) {
+          pauseAudio();
+        }
+      });
+
+      // During seeking
+      seek.addEventListener('input', () => {
+        if (isSeeking) {
+          debouncedSeek(seek.value);
+        }
+      });
+
+      // End seeking
+      seek.addEventListener('mouseup', () => {
+        if (isSeeking) {
+          isSeeking = false;
+          
+          // Clear any pending seeks
+          if (seekDebounceTimer) {
+            clearTimeout(seekDebounceTimer);
+          }
+          
+          // Final seek
+          if (audio.duration && !isNaN(audio.duration)) {
+            try {
+              const newTime = (seek.value / 100) * audio.duration;
+              audio.currentTime = newTime;
+            } catch (error) {
+              console.warn('Final seek error:', error);
+            }
+          }
+          
+          // Resume if was playing
+          if (wasPlaying) {
+            setTimeout(() => playAudio(), 100);
+          }
+        }
+      });
+
+      // Handle clicks on the seek bar (discrete seeking)
+      seek.addEventListener('click', (e) => {
+        if (!isSeeking) {
+          wasPlaying = !audio.paused;
+          
+          if (wasPlaying) {
+            pauseAudio();
+          }
+          
+          // Immediate seek for clicks
+          if (audio.duration && !isNaN(audio.duration)) {
+            try {
+              const newTime = (seek.value / 100) * audio.duration;
+              audio.currentTime = newTime;
+            } catch (error) {
+              console.warn('Click seek error:', error);
+            }
+          }
+          
+          // Resume if was playing
+          if (wasPlaying) {
+            setTimeout(() => playAudio(), 100);
+          }
+        }
+      });
+
+      // Touch support for mobile
+      seek.addEventListener('touchstart', () => {
+        isSeeking = true;
+        wasPlaying = !audio.paused;
+        if (wasPlaying) pauseAudio();
+      });
+
+      seek.addEventListener('touchend', () => {
+        if (isSeeking) {
+          isSeeking = false;
+          if (wasPlaying) {
+            setTimeout(() => playAudio(), 100);
+          }
+        }
+      });
+    }
 
     // Volume control
-    volumeBar.addEventListener('input', (e) => {
-        audio.volume = e.target.value;
-    });
-
-    audio.addEventListener('volumechange', () => {
-        volumeBar.value = audio.volume;
-        updateVolumeIcon();
-    });
-    
-    volumeBtn.addEventListener('click', () => {
-        audio.muted = !audio.muted;
-        updateVolumeIcon();
-    });
-    
-    function updateVolumeIcon() {
-        if (audio.muted || audio.volume === 0) {
-            volumeIcon.className = 'fas fa-volume-mute';
-        } else if (audio.volume < 0.5) {
-            volumeIcon.className = 'fas fa-volume-down';
-        } else {
-            volumeIcon.className = 'fas fa-volume-up';
+    if (vol) {
+      vol.addEventListener('input', () => {
+        try {
+          const volume = parseFloat(vol.value);
+          if (!isNaN(volume) && volume >= 0 && volume <= 1) {
+            audio.volume = volume;
+          }
+        } catch (error) {
+          console.warn('Volume error:', error);
         }
+      });
     }
 
-    // Time formatting
-    function formatTime(seconds) {
-        const minutes = Math.floor(seconds / 60);
-        const secs = Math.floor(seconds % 60);
-        return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+    // Speed control
+    if (speed) {
+      speed.addEventListener('change', () => {
+        try {
+          const rate = parseFloat(speed.value);
+          if (!isNaN(rate) && rate > 0) {
+            audio.playbackRate = rate;
+          }
+        } catch (error) {
+          console.warn('Speed error:', error);
+        }
+      });
     }
+
+    // End of audio
+    audio.addEventListener('ended', () => {
+      updateUI();
+      audio.currentTime = 0;
+      if (seek) seek.value = 0;
+      if (current) current.textContent = '0:00';
+    });
+
+    // Initialize controls
+    if (vol && vol.value) audio.volume = parseFloat(vol.value);
+    if (speed && speed.value) audio.playbackRate = parseFloat(speed.value);
     
-    // Initialize
-    pauseIcon.style.display = 'none';
-    updateVolumeIcon();
-});
+    // Initial UI update
+    updateUI();
+
+    // Clean up timers on page unload
+    window.addEventListener('beforeunload', () => {
+      if (seekDebounceTimer) clearTimeout(seekDebounceTimer);
+      if (skipDebounceTimer) clearTimeout(skipDebounceTimer);
+    });
+  });
+})();

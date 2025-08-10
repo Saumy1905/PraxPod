@@ -1,17 +1,27 @@
-<div class="episode-card">
-    <a href="{{ '/episodes/' | append: include.podcast.podcast_id | append: '/' | append: include.episode.slug | relative_url }}">
-        <div class="episode-cover" style="background-image: url('{{ include.podcast.cover_image | relative_url }}');"></div>
-    </a>
-    <div class="episode-content">
-        <h3 class="episode-title">
-            <a href="{{ '/episodes/' | append: include.podcast.podcast_id | append: '/' | append: include.episode.slug | relative_url }}">
-                {{ include.episode.title }}
-            </a>
-        </h3>
-        <p class="episode-meta">{{ include.podcast.title }}</p>
-        <p class="episode-description">{{ include.episode.description }}</p>
-        <a href="{{ '/episodes/' | append: include.podcast.podcast_id | append: '/' | append: include.episode.slug | relative_url }}" class="btn-listen">
-            <i class="fas fa-play"></i> Listen Now
-        </a>
+<!-- _includes/episode-card.html -->
+<article class="pdf-card">
+  <div class="pdf-icon">
+    <i class="fas fa-podcast"></i>
+  </div>
+  <div class="pdf-content">
+    <h3 class="pdf-title">
+      <a href="{{ include.url | relative_url }}">{{ include.title }}</a>
+    </h3>
+    <div class="pdf-meta">
+      <span>{{ include.college | replace: 'ymca', 'JC Bose University' | replace: 'nit-kur', 'NIT Kurukshetra' }}</span>
+      <span>{{ include.branch | replace: '-', ' ' | capitalize }}</span>
+      <span>{{ include.year }}</span>
+      {% if include.duration %}<span>{{ include.duration }}</span>{% endif %}
     </div>
-</div>
+    <div class="pdf-actions">
+      <a class="btn-action btn-external" href="{{ include.url | relative_url }}">
+        <i class="fas fa-headphones"></i><span>Listen</span>
+      </a>
+      {% if include.audio_url %}
+      <a class="btn-action btn-download" href="{{ include.audio_url | relative_url }}" download>
+        <i class="fas fa-download"></i><span>Download</span>
+      </a>
+      {% endif %}
+    </div>
+  </div>
+</article>

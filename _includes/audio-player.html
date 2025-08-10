@@ -1,24 +1,53 @@
-<div id="audio-player" class="audio-player-container">
-    <h2 class="episode-main-title">{{ page.title }}</h2>
-    <p class="episode-main-meta">{{ page.podcast_title }} | {{ page.year }}</p>
-
-    <audio id="audio-element" src="{{ page.audio_file | relative_url }}"></audio>
+<!-- _includes/audio-player.html -->
+<div class="audio-player" data-episode-id="{{ include.episode_id }}">
+  <div class="player-cover">
+    <img src="{{ include.cover | default: site.baseurl | append: '/assets/audio/covers/default-cover.jpg' }}" alt="Cover" loading="lazy">
+  </div>
+  <div class="player-main">
+    <div class="player-title">{{ include.title }}</div>
+    <div class="player-subtitle">{{ include.subtitle }}</div>
 
     <div class="player-controls">
-        <button id="play-pause-btn" class="play-pause-btn">
-            <i class="fas fa-play"></i>
-            <i class="fas fa-pause"></i>
-        </button>
+      <button class="player-btn" data-action="back-15" title="Back 15s" type="button"><i class="fas fa-undo"></i></button>
+      <button class="player-btn" data-action="play-pause" title="Play/Pause" type="button"><i class="fas fa-play"></i></button>
+      <button class="player-btn" data-action="fwd-30" title="Forward 30s" type="button"><i class="fas fa-redo"></i></button>
+      <div class="player-time">
+        <span class="current-time">0:00</span> / <span class="total-time">--:--</span>
+      </div>
     </div>
 
-    <div class="progress-container">
-        <span id="current-time" class="time-display">0:00</span>
-        <input type="range" id="progress-bar" class="progress-bar" value="0" step="0.1">
-        <span id="duration" class="time-display">0:00</span>
+    <div class="player-progress">
+      <input type="range" class="seek-bar" min="0" max="100" step="0.1" value="0" aria-label="Seek" />
     </div>
-    
-    <div class="volume-container" style="justify-content: center; margin-top: 1rem;">
-        <button id="volume-btn" class="control-btn"><i class="fas fa-volume-up"></i></button>
-        <input type="range" id="volume-bar" class="volume-bar" min="0" max="1" step="0.01" value="1">
+
+    <div class="player-extras">
+      <div class="volume">
+        <i class="fas fa-volume-up"></i>
+        <input type="range" class="volume-bar" min="0" max="1" step="0.01" value="1" aria-label="Volume" />
+      </div>
+      <div class="speed">
+        <label for="speed-{{ include.episode_id }}">Speed</label>
+        <select class="speed-select" id="speed-{{ include.episode_id }}">
+          <option value="0.75">0.75x</option>
+          <option value="1" selected>1x</option>
+          <option value="1.25">1.25x</option>
+          <option value="1.5">1.5x</option>
+          <option value="2">2x</option>
+        </select>
+      </div>
+      <a class="btn-action btn-download" href="{{ include.audio_url | relative_url }}" download>
+        <i class="fas fa-download"></i><span>Download</span>
+      </a>
+      <a class="btn-action btn-external" href="{{ include.share_url | relative_url }}" target="_blank" rel="noopener">
+        <i class="fas fa-external-link-alt"></i><span>Open</span>
+      </a>
     </div>
+
+    <audio class="audio-el" preload="metadata" crossorigin="anonymous">
+      <source src="{{ include.audio_url | relative_url }}" type="audio/mpeg">
+      <source src="{{ include.audio_url | relative_url }}" type="audio/mp4">
+      <source src="{{ include.audio_url | relative_url }}" type="audio/wav">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
 </div>

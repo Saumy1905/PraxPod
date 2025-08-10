@@ -1,38 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
+---
+layout: nil
+---
+<!doctype html>
+<html lang="en" class="">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }} | {{ site.title }}</title>
-    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
+  <meta charset="utf-8">
+  <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {% seo %}
+
+  <link rel="icon" href="{{ site.baseurl }}/assets/images/favicon.ico">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
+  <link rel="preload" href="{{ site.baseurl }}/assets/js/main.js" as="script">
+  <link rel="preload" href="{{ site.baseurl }}/assets/js/audio-player.js" as="script">
+  <!-- Font Awesome (icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
 <body>
-    <header class="site-header">
-        <div class="container">
-            <div class="header-left">
-                <h1 class="site-title"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
-            </div>
-            <div class="header-right">
-                <button id="theme-toggle" class="theme-toggle" title="Toggle dark mode">
-                    <i class="fas fa-moon"></i>
-                </button>
-            </div>
-        </div>
-    </header>
+  {% include podcast-header.html %}
 
-    <main>
-        {{ content }}
-    </main>
+  <main class="container">
+    {{ content }}
+  </main>
 
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-bottom">
-                <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
-                <p>A companion site for <a href="https://pyqfort.com" target="_blank" rel="noopener">PYQFort</a>.</p>
-            </div>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-left">
+          <h2>{{ site.title }}</h2>
+          <p>{{ site.description }}</p>
         </div>
-    </footer>
+        <div class="footer-right">
+          <div class="footer-links">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="{{ site.baseurl }}/">Home</a></li>
+              <li><a href="{{ site.baseurl }}/episodes/">Episodes</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; {{ site.time | date: "%Y" }} {{ site.title }}. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{{ site.baseurl }}/assets/js/main.js"></script>
+  <script src="{{ site.baseurl }}/assets/js/audio-player.js"></script>
 </body>
 </html>

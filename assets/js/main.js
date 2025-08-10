@@ -1,25 +1,28 @@
-// --- assets/js/main.js ---
+// assets/js/main.js
+(function() {
+  const root = document.documentElement;
+  const body = document.body;
+  const THEME_KEY = 'praxpod-theme';
+  const toggleBtn = document.getElementById('theme-toggle');
+  const menuToggle = document.getElementById('menu-toggle');
+  const nav = document.getElementById('site-nav');
 
-document.addEventListener('DOMContentLoaded', () => {
-    const themeToggle = document.getElementById('theme-toggle');
-    const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+  // Apply saved theme
+  const saved = localStorage.getItem(THEME_KEY);
+  if (saved === 'dark') body.classList.add('dark-theme');
 
-    if (currentTheme) {
-        document.body.classList.add(currentTheme);
-        if (currentTheme === 'dark-theme') {
-            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        }
-    }
-
-    themeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark-theme');
-        let theme = 'light-theme';
-        if (document.body.classList.contains('dark-theme')) {
-            theme = 'dark-theme';
-            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        } else {
-            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-        }
-        localStorage.setItem('theme', theme);
+  // Toggle theme
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark-theme');
+      localStorage.setItem(THEME_KEY, body.classList.contains('dark-theme') ? 'dark' : 'light');
     });
-});
+  }
+
+  // Menu toggle
+  if (menuToggle && nav) {
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
+  }
+})();

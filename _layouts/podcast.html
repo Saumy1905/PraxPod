@@ -1,22 +1,19 @@
 ---
 layout: default
-title: Home
 ---
 <section class="hero">
   <div class="container">
-    <h1>Welcome to PraxPod</h1>
-    <p>Stream audio summaries and discussions for PYQs</p>
+    <h1>{{ page.title | default: "Podcast" }}</h1>
+    {% if page.description %}<p>{{ page.description }}</p>{% endif %}
   </div>
 </section>
 
-<section class="featured-colleges">
+<section>
   <div class="container">
-    <h2 class="section-title">Latest Episodes</h2>
     <div class="pdf-grid">
-      {% assign series = site.data.podcasts | where: "id", "pyq-discussions" | first %}
-      {% if series and series.episodes %}
-        {% assign eps = series.episodes | sort: "published" | reverse %}
-        {% for ep in eps %}
+      {% assign shows = site.data.podcasts | where: "id", page.podcast_id | first %}
+      {% if shows and shows.episodes %}
+        {% for ep in shows.episodes %}
           {% capture ep_url %}{{ site.baseurl }}/episodes/{{ ep.college }}/{{ ep.branch }}/{{ ep.id }}/{% endcapture %}
           {% include episode-card.html
             url=ep_url
@@ -28,7 +25,7 @@ title: Home
             audio_url=ep.audio_url %}
         {% endfor %}
       {% else %}
-        <p>No episodes yet.</p>
+        <p>No episodes found.</p>
       {% endif %}
     </div>
   </div>

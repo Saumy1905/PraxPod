@@ -22,6 +22,38 @@
       audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/biology/ymca-biology-set-1-2023.mp3
       duration: "15:11"
       published: 2025-08-10
+    - id: ymca-constitution-2023
+      title: YMCA Constitution 2023
+      college: ymca
+      branch: constitution
+      year: 2023
+      audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/constitution/ymca-constitution-2023.mp3
+      duration: "21:26"
+      published: 2025-08-10
+    - id: ymca-dbms-2019
+      title: YMCA DBMS 2019
+      college: ymca
+      branch: computer-science
+      year: 2019
+      audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/computer-science/ymca-dbms-2019.mp3
+      duration: "25:38"
+      published: 2025-08-10
+    - id: ymca-dbms-2023
+      title: YMCA DBMS 2023
+      college: ymca
+      branch: computer-science
+      year: 2023
+      audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/computer-science/ymca-dbms-2023.mp3
+      duration: "33:38"
+      published: 2025-08-10
+    - id: ymca-sns-2019
+      title: YMCA Signals and Systems 2019
+      college: ymca
+      branch: sns
+      year: 2019
+      audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/sns/ymca-sns-2019.mp3
+      duration: "31:04"
+      published: 2025-08-10
     - id: nit-kur-env-science-2023
       title: NIT Kurukshetra Environmental Science 2023
       college: nit-kur

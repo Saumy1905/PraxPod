@@ -54,6 +54,46 @@
       audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/sns/ymca-sns-2019.mp3
       duration: "31:04"
       published: 2025-08-10
+    - id: ymca-universal-human-values-2023
+      title: YMCA Universal Human Values 2023
+      college: ymca
+      branch: universal-human-values
+      year: 2023
+      audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/universal-human-values/ymca-universal-human-values-2023.mp3
+      duration: "17:02"
+      published: 2025-08-10
+    - id: ymca-coa-praxian-analysis-2025
+      title: YMCA Computer Organization and Architecture Praxian Analysis 2025
+      college: ymca
+      branch: coa
+      year: 2025
+      audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/coa/ymca-coa-praxian-analysis-2025.mp3
+      duration: "16:40"
+      published: 2025-08-10
+    - id: ymca-daa-praxian-analysis-2025
+      title: YMCA Design and Analysis of Algorithms Praxian Analysis 2025
+      college: ymca
+      branch: daa
+      year: 2025
+      audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/daa/ymca-daa-praxian-analysis-2025.mp3
+      duration: "16:42"
+      published: 2025-08-10
+    - id: ymca-discrete-mathematics-praxian-analysis-2025
+      title: YMCA Discrete Mathematics Praxian Analysis 2025
+      college: ymca
+      branch: discrete-mathematics
+      year: 2025
+      audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/discrete-mathematics/ymca-discrete-mathematics-praxian-analysis-2025.mp3
+      duration: "11:02"
+      published: 2025-08-10
+    - id: ymca-env-science-praxian-analysis-2025
+      title: YMCA Environmental Science Praxian Analysis 2025
+      college: ymca
+      branch: env-science
+      year: 2025
+      audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/env-science/ymca-env-science-praxian-analysis-2025.mp3
+      duration: "11:36"
+      published: 2025-08-10
     - id: nit-kur-env-science-2023
       title: NIT Kurukshetra Environmental Science 2023
       college: nit-kur
@@ -61,4 +101,36 @@
       year: 2023
       audio_url: /PraxPod/assets/audio/pyq-discussions/nit-kur/env-science/nit-kur-env-science-2023.mp3
       duration: "17:54"
+      published: 2025-08-10
+    - id: nit-kur-e-physics-2023
+      title: NIT Kurukshetra Engineering Physics 2023
+      college: nit-kur
+      branch: engineering-physics
+      year: 2023
+      audio_url: /PraxPod/assets/audio/pyq-discussions/nit-kur/engineering-physics/nit-kur-e-physics-2023.mp3
+      duration: "17:56"
+      published: 2025-08-10
+    - id: nit-kur-e-practice-2023
+      title: NIT Kurukshetra Engineering Practice 2023
+      college: nit-kur
+      branch: engineering-practice
+      year: 2023
+      audio_url: /PraxPod/assets/audio/pyq-discussions/nit-kur/engineering-practice/nit-kur-e-practice-2023.mp3
+      duration: "14:49"
+      published: 2025-08-10
+    - id: nit-kur-financial-education-2024
+      title: NIT Kurukshetra Financial Education 2024
+      college: nit-kur
+      branch: financial-education
+      year: 2024
+      audio_url: /PraxPod/assets/audio/pyq-discussions/nit-kur/financial-education/nit-kur-financial-education-2024.mp3
+      duration: "14:34"
+      published: 2025-08-10
+    - id: nit-kur-programming-using-c-2023
+      title: NIT Kurukshetra Programming Using C 2023
+      college: nit-kur
+      branch: programming-using-c
+      year: 2023
+      audio_url: /PraxPod/assets/audio/pyq-discussions/nit-kur/programming-using-c/nit-kur-programming-using-c-2023.mp3
+      duration: "16:11"
       published: 2025-08-10

@@ -33,17 +33,17 @@
     - id: ymca-dbms-2019
       title: YMCA DBMS 2019
       college: ymca
-      branch: computer-science
+      branch: dbms
       year: 2019
-      audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/computer-science/ymca-dbms-2019.mp3
+      audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/dbms/ymca-dbms-2019.mp3
       duration: "25:38"
       published: 2025-08-10
     - id: ymca-dbms-2023
       title: YMCA DBMS 2023
       college: ymca
-      branch: computer-science
+      branch: sbms
       year: 2023
-      audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/computer-science/ymca-dbms-2023.mp3
+      audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/sbms/ymca-dbms-2023.mp3
       duration: "33:38"
       published: 2025-08-10
     - id: ymca-sns-2019
@@ -105,17 +105,17 @@
     - id: nit-kur-e-physics-2023
       title: NIT Kurukshetra Engineering Physics 2023
       college: nit-kur
-      branch: engineering-physics
+      branch: e-physics
       year: 2023
-      audio_url: /PraxPod/assets/audio/pyq-discussions/nit-kur/engineering-physics/nit-kur-e-physics-2023.mp3
+      audio_url: /PraxPod/assets/audio/pyq-discussions/nit-kur/e-physics/nit-kur-e-physics-2023.mp3
       duration: "17:56"
       published: 2025-08-10
     - id: nit-kur-e-practice-2023
       title: NIT Kurukshetra Engineering Practice 2023
       college: nit-kur
-      branch: engineering-practice
+      branch: e-practice
       year: 2023
-      audio_url: /PraxPod/assets/audio/pyq-discussions/nit-kur/engineering-practice/nit-kur-e-practice-2023.mp3
+      audio_url: /PraxPod/assets/audio/pyq-discussions/nit-kur/e-practice/nit-kur-e-practice-2023.mp3
       duration: "14:49"
       published: 2025-08-10
     - id: nit-kur-financial-education-2024

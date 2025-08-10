@@ -11,6 +11,12 @@ end
 gem "webrick", "~> 1.7"
 
 # Optional compatibility gems mirrored from PYQFort if desired locally
-gem "kramdown-parser-gfm"
-
+gem "csv"
+gem "faraday-retry"
+gem "base64"
 gem "logger"
+gem "rexml"
+gem "ipaddr"
+gem "bigdecimal"
+
+gem 'kramdown-parser-gfm'

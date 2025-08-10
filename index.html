@@ -1,0 +1,15 @@
+---
+layout: default
+title: Home
+---
+
+<div class="container">
+    <h2 class="section-title" style="font-size: 2rem; margin-bottom: 2rem; text-align: center;">All Episodes</h2>
+    <div class="episode-grid">
+        {% for podcast in site.data.podcasts %}
+            {% for episode in podcast.episodes %}
+                {% include episode-card.html episode=episode podcast=podcast %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+</div>

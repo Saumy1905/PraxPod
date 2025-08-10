@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} | {{ site.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-left">
+                <h1 class="site-title"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+            </div>
+            <div class="header-right">
+                <button id="theme-toggle" class="theme-toggle" title="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        {{ content }}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
+                <p>A companion site for <a href="https://pyqfort.com" target="_blank" rel="noopener">PYQFort</a>.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

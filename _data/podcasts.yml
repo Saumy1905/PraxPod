@@ -1,0 +1,21 @@
+- podcast_id: pyq-discussions
+  title: PYQ Discussions
+  description: "In-depth discussions and analysis of previous year question papers."
+  cover_image: "/assets/audio/covers/default-cover.jpg"
+  episodes:
+    - title: "YMCA Biology 2024 Discussion"
+      slug: ymca-biology-2024
+      description: "A detailed breakdown of the 2024 Biology paper from JC Bose University (YMCA)."
+      audio_file: "/assets/audio/pyq-discussions/ymca/biology/ymca-biology-2024.mp3"
+      college: ymca
+      subject: biology
+      year: 2024
+
+    - title: "NIT Kurukshetra Env. Science 2023 Analysis"
+      slug: nit-kur-env-science-2023
+      description: "Analysis of the Environmental Science paper from NIT Kurukshetra, 2023."
+      audio_file: "/assets/audio/pyq-discussions/nit-kur/env-science/nit-kur-env-science-2023.mp3"
+      college: nit-kur
+      subject: env-science
+      year: 2023
+

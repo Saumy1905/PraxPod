@@ -1,0 +1,17 @@
+<div class="episode-card">
+    <a href="{{ '/episodes/' | append: include.podcast.podcast_id | append: '/' | append: include.episode.slug | relative_url }}">
+        <div class="episode-cover" style="background-image: url('{{ include.podcast.cover_image | relative_url }}');"></div>
+    </a>
+    <div class="episode-content">
+        <h3 class="episode-title">
+            <a href="{{ '/episodes/' | append: include.podcast.podcast_id | append: '/' | append: include.episode.slug | relative_url }}">
+                {{ include.episode.title }}
+            </a>
+        </h3>
+        <p class="episode-meta">{{ include.podcast.title }}</p>
+        <p class="episode-description">{{ include.episode.description }}</p>
+        <a href="{{ '/episodes/' | append: include.podcast.podcast_id | append: '/' | append: include.episode.slug | relative_url }}" class="btn-listen">
+            <i class="fas fa-play"></i> Listen Now
+        </a>
+    </div>
+</div>

@@ -11,6 +11,13 @@
   --danger-color: #dc3545;
   --info-color: #17a2b8;
 
+  /* Enhanced theme variables for card effects */
+  --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --card-shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.2);
+  --card-border-radius: 8px;
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
   /* Player */
   --player-bg: #fff;
   --player-border: #e9ecef;
@@ -28,6 +35,10 @@
   --text-color: #f0f0f0;
   --light-gray: #1e1e1e;
   --border-color: #2d2d2d;
+
+  /* Enhanced dark theme card variables */
+  --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  --card-shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.5);
 
   --player-bg: #1e1e1e;
   --player-border: #2d2d2d;
@@ -86,10 +97,16 @@ h1, h2, h3, h4, h5, h6 { margin-bottom: 1rem; line-height: 1.3; color: var(--tex
 /* Cards reused from PYQFort */
 .pdf-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap:2rem; }
 .pdf-card {
-  display:flex; background-color: var(--background-color); border-radius:8px;
-  overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s;
+  display:flex; background-color: var(--background-color); border-radius: var(--card-border-radius);
+  overflow:hidden; box-shadow: var(--card-shadow); 
+  transition: var(--transition-bounce);
+  transform-style: preserve-3d;
+  position: relative;
 }
-.pdf-card:hover { transform: translateY(-5px); box-shadow:0 15px 30px rgba(0,0,0,0.15); }
+.pdf-card:hover { 
+  transform: translateY(-5px) perspective(1000px) rotateX(5deg);
+  box-shadow:0 15px 30px rgba(0,0,0,0.15);
+}
 .pdf-icon {
   padding:2rem; font-size:2rem; display:flex; align-items:center; justify-content:center;
   background-color: var(--primary-color); color: #fff; min-width:80px;
@@ -101,10 +118,12 @@ h1, h2, h3, h4, h5, h6 { margin-bottom: 1rem; line-height: 1.3; color: var(--tex
 .btn-action {
   display:flex; align-items:center; gap:0.5rem; padding:0.5rem 1rem;
   background: var(--light-gray); border:1px solid var(--border-color); border-radius:6px;
-  cursor:pointer; text-decoration:none; color: var(--text-color); font-size:0.9rem; transition: all 0.3s ease;
+  cursor:pointer; text-decoration:none; color: var(--text-color); font-size:0.9rem; 
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 .btn-action:hover { background: #e9ecef; border-color: var(--primary-color); color: var(--primary-color); }
-.btn-download { /* keep neutral, hover handled above */ }
 .btn-external { background: var(--info-color); color:#fff; border-color: var(--info-color); }
 .btn-external:hover { background: var(--primary-dark); color:#fff; }
 
@@ -189,6 +208,392 @@ h1, h2, h3, h4, h5, h6 { margin-bottom: 1rem; line-height: 1.3; color: var(--tex
   .pdf-grid { grid-template-columns: 1fr; }
   .audio-player { flex-direction:column; align-items:stretch; }
   .player-time { margin-left:0; }
+}
+
+/* ===== ENHANCED CARD ANIMATIONS & RIPPLE EFFECTS ===== */
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.animate-on-scroll.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Enhanced card grid layouts */
+.college-grid,
+.branch-grid,
+.semester-grid,
+.subject-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* Enhanced card base styles with 3D effects */
+.college-card,
+.branch-card,
+.semester-card,
+.subject-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-color);
+  border-radius: var(--card-border-radius);
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  transition: var(--transition-smooth);
+  transform-style: preserve-3d;
+  position: relative;
+  cursor: pointer;
+}
+
+.college-card:hover,
+.branch-card:hover,
+.semester-card:hover,
+.subject-card:hover {
+  transform: translateY(-5px) perspective(1000px) rotateX(3deg);
+  box-shadow: var(--card-shadow-hover);
+}
+
+/* Card icon sections with enhanced styling */
+.college-icon,
+.branch-icon,
+.semester-icon {
+  padding: 2rem;
+  font-size: 3rem;
+  text-align: center;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.college-icon {
+  background-color: var(--primary-color);
+}
+
+.branch-icon {
+  background-color: var(--success-color);
+}
+
+.semester-icon {
+  background-color: var(--info-color);
+}
+
+/* Card content areas */
+.college-content,
+.branch-content,
+.semester-content,
+.subject-content {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.college-title,
+.branch-title,
+.semester-title,
+.subject-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.college-description,
+.branch-description,
+.semester-description,
+.subject-description {
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.subject-meta,
+.branch-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  color: var(--secondary-color);
+  font-size: 0.9rem;
+}
+
+.subject-meta i,
+.branch-meta i {
+  margin-right: 0.5rem;
+}
+
+/* Enhanced button styles with ripple effect */
+.btn,
+.btn-view,
+.btn-primary,
+.btn-secondary {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}
+
+.btn-view,
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-view:hover,
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Ripple effect animation */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.6);
+  transform: scale(0);
+  animation: ripple-animation 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Enhanced PDF card with better 3D effects */
+.pdf-card {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px solid var(--border-color);
+  background: var(--background-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.pdf-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s;
+  pointer-events: none;
+}
+
+.pdf-card:hover::before {
+  transform: translateX(100%);
+}
+
+.pdf-card:hover {
+  transform: translateY(-8px) perspective(1000px) rotateX(5deg) rotateY(2deg);
+  box-shadow: var(--card-shadow-hover), 0 0 20px rgba(74, 108, 247, 0.3);
+  border-color: var(--primary-color);
+}
+
+.college-card:hover,
+.branch-card:hover,
+.semester-card:hover,
+.subject-card:hover {
+  transform: translateY(-5px) perspective(1000px) rotateX(3deg);
+  box-shadow: var(--card-shadow-hover), 0 0 15px rgba(74, 108, 247, 0.2);
+}
+
+/* Enhanced PDF icon with gradient effect */
+.pdf-icon {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  position: relative;
+  overflow: hidden;
+}
+
+.pdf-icon::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s;
+}
+
+.pdf-card:hover .pdf-icon::after {
+  transform: translateX(100%);
+}
+
+/* Enhanced action buttons */
+.pdf-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+/* Enhanced tilt effect for interactive cards */
+.card-tilt {
+  transition: transform 0.2s ease-out;
+}
+
+.card-tilt:hover {
+  transform-style: preserve-3d;
+}
+
+/* Podcast card specific enhancements */
+.pdf-card .btn-external {
+  background: linear-gradient(135deg, var(--info-color), #0ea5e9);
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.pdf-card .btn-external::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s;
+}
+
+.pdf-card .btn-external:hover::before {
+  left: 100%;
+}
+
+/* Card title enhancements */
+.pdf-title a {
+  color: var(--text-color);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.pdf-title a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.pdf-card:hover .pdf-title a::after {
+  width: 100%;
+}
+
+/* Meta information styling */
+.pdf-meta span {
+  background: var(--light-gray);
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  color: var(--secondary-color);
+  transition: all 0.3s ease;
+}
+
+.pdf-card:hover .pdf-meta span {
+  background: var(--primary-color);
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* Filter buttons with enhanced styling */
+.filter-btn {
+  padding: 0.5rem 1rem;
+  background-color: var(--light-gray);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Loading animations for cards */
+@keyframes cardSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-slide-in {
+  animation: cardSlideIn 0.6s ease-out;
+}
+
+/* Enhanced responsive design */
+@media (max-width: 992px) {
+  .college-grid,
+  .subject-grid,
+  .pdf-grid,
+  .semester-grid,
+  .branch-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .college-card:hover,
+  .branch-card:hover,
+  .semester-card:hover,
+  .subject-card:hover,
+  .pdf-card:hover {
+    transform: translateY(-3px);
+  }
+}
+
+@media (max-width: 768px) {
+  .college-grid,
+  .subject-grid,
+  .pdf-grid,
+  .semester-grid,
+  .branch-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .college-card:hover,
+  .branch-card:hover,
+  .semester-card:hover,
+  .subject-card:hover,
+  .pdf-card:hover {
+    transform: none;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  }
 }
 
 

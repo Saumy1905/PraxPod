@@ -41,9 +41,9 @@
     - id: ymca-dbms-2023
       title: YMCA DBMS 2023
       college: ymca
-      branch: sbms
+      branch: dbms
       year: 2023
-      audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/sbms/ymca-dbms-2023.mp3
+      audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/dbms/ymca-dbms-2023.mp3
       duration: "33:38"
       published: 2025-08-10
     - id: ymca-sns-2019

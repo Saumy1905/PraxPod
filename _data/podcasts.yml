@@ -22,6 +22,30 @@
       audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/biology/ymca-biology-set-1-2023.mp3
       duration: "15:11"
       published: 2025-08-10
+    - id: ymca-biology-set-2-2023
+      title: YMCA Biology Set 2 2023
+      college: ymca
+      branch: biology
+      year: 2023
+      audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/biology/ymca-biology-set-2-2023.mp3
+      duration: "19:29"
+      published: 2025-08-10
+    - id: ymca-biology-set-3-2023
+      title: YMCA Biology January 2023
+      college: ymca
+      branch: biology
+      year: 2023
+      audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/biology/ymca-biology-set-3-2023.mp3
+      duration: "08:25"
+      published: 2025-08-10
+    - id: ymca-biology-praxian-analysis-2025
+      title: YMCA Biology Praxian Analysis 2025
+      college: ymca
+      branch: biology
+      year: 2025
+      audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/biology/ymca-biology-praxian-analysis-2025.mp3
+      duration: "15:56"
+      published: 2025-08-10
     - id: ymca-constitution-2023
       title: YMCA Constitution 2023
       college: ymca

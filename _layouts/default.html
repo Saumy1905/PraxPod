@@ -2,11 +2,23 @@
 layout: nil
 ---
 <!doctype html>
-<html lang="en" class="">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Immediately apply theme to prevent flash -->
+  <script>
+    (function() {
+      // Check localStorage for theme preference
+      var savedTheme = localStorage.getItem('praxpod-theme');
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark-theme');
+        document.body.classList.add('dark-theme');
+      }
+    })();
+  </script>
 
   {% seo %}
 

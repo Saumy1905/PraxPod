@@ -7,15 +7,16 @@
   const menuToggle = document.getElementById('menu-toggle');
   const nav = document.getElementById('site-nav');
 
-  // Apply saved theme
-  const saved = localStorage.getItem(THEME_KEY);
-  if (saved === 'dark') body.classList.add('dark-theme');
+  // Apply saved theme - now done via inline script in head
+  // This is still here for compatibility, but the main
+  // application now happens in the head script to prevent flash
 
   // Toggle theme
   if (toggleBtn) {
     toggleBtn.addEventListener('click', () => {
       body.classList.toggle('dark-theme');
-      localStorage.setItem(THEME_KEY, body.classList.contains('dark-theme') ? 'dark' : 'light');
+      root.classList.toggle('dark-theme');
+      localStorage.setItem(THEME_KEY, root.classList.contains('dark-theme') ? 'dark' : 'light');
     });
   }
 

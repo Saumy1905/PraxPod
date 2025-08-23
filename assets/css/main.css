@@ -1,4 +1,4 @@
-/* Set initial light mode color scheme */
+/* initial light mode color scheme */
 :root {
   --primary-color: #4a6cf7;
   --primary-dark: #3a56c5;
@@ -12,7 +12,7 @@
   --danger-color: #dc3545;
   --info-color: #17a2b8;
 
-  /* Enhanced theme variables for card effects */
+  /* theme variables for card effects */
   --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   --card-shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.2);
   --card-border-radius: 8px;
@@ -26,7 +26,7 @@
   --player-muted: #6c757d;
   --player-accent: #4a6cf7;
   
-  /* Ensure smooth transition for color changes */
+  /* smooth transition for color changes */
   color-scheme: light;
 }
 
@@ -40,7 +40,7 @@ html.dark-theme {
   --light-gray: #1e1e1e;
   --border-color: #2d2d2d;
 
-  /* Enhanced dark theme card variables */
+  /* dark theme card variables */
   --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   --card-shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.5);
 
@@ -50,7 +50,7 @@ html.dark-theme {
   --player-muted: #cccccc;
   --player-accent: #5d7bf9;
   
-  /* Set dark color scheme to tell browsers we're in dark mode */
+  /* Setting dark color scheme to tell browsers we're in dark mode */
   color-scheme: dark;
 }
 
@@ -62,7 +62,7 @@ body.dark-theme {
 
 * { margin:0; padding:0; box-sizing:border-box; }
 
-/* Add smooth transitions to all elements */
+/* Adding smooth transitions to all elements */
 html {
   transition: background-color 0.3s ease, color 0.3s ease;
   background-color: var(--background-color);
@@ -120,7 +120,7 @@ h1, h2, h3, h4, h5, h6 { margin-bottom: 1rem; line-height: 1.3; color: var(--tex
   transform: scale(1.1);
 }
 
-/* Add animation for theme toggle */
+/* animation for theme toggle */
 .theme-toggle i {
   transition: transform 0.3s ease;
 }
@@ -255,7 +255,7 @@ h1, h2, h3, h4, h5, h6 { margin-bottom: 1rem; line-height: 1.3; color: var(--tex
   .player-time { margin-left:0; }
 }
 
-/* ===== ENHANCED CARD ANIMATIONS & RIPPLE EFFECTS ===== */
+/* =============== ENHANCED CARD ANIMATIONS & RIPPLE EFFECTS =============== */
 
 .animate-on-scroll {
   opacity: 0;

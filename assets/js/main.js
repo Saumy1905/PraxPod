@@ -1,4 +1,3 @@
-// assets/js/main.js
 (function() {
   const root = document.documentElement;
   const body = document.body;
@@ -44,7 +43,7 @@
     });
   }
 
-  // ===== ENHANCED CARD INTERACTIONS =====
+  // ==================== ENHANCED CARD INTERACTIONS ====================
 
   // Ripple effect for buttons and cards
   function createRipple(event) {

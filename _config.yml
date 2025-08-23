@@ -1,8 +1,7 @@
-# _config.yml
 title: PraxPod
 description: Stream audio summaries and discussions for PYQs.
 baseurl: "/PraxPod"
-url: "" # replace with your GH username/org
+url: "" 
 
 markdown: kramdown
 highlighter: rouge

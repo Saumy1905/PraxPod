@@ -10,7 +10,6 @@ end
 # For local Ruby 3+
 gem "webrick", "~> 1.7"
 
-# Optional compatibility gems mirrored from PYQFort if desired locally
 gem "csv"
 gem "faraday-retry"
 gem "base64"

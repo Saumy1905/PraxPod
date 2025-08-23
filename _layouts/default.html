@@ -69,6 +69,60 @@ layout: nil
         <div class="footer-left">
           <h2>{{ site.title }}</h2>
           <p>{{ site.description }}</p>
+          <div class="social-links">
+            <a href="https://whatsapp.com/channel/0029VbA8ahgDzgT43SB9VH1V" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Channel">
+              <i class="fab fa-whatsapp" aria-hidden="true"></i>
+            </a>
+            <a href="https://x.com/Saumy1905" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+              <img src="{{ '/assets/images/icons/x.svg' | relative_url }}" alt="X (Twitter)" aria-hidden="true" class="theme-aware-icon">
+            </a>
+            <a href="https://www.linkedin.com/company/pyqfort" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <i class="fab fa-linkedin" aria-hidden="true"></i>
+            </a>
+            <a href="https://github.com/Saumy1905/PYQFort" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <img src="{{ '/assets/images/icons/github.svg' | relative_url }}" alt="GitHub" aria-hidden="true" class="theme-aware-icon">
+            </a>
+          </div>
+          <style>
+            .social-links {
+              margin-top: 1rem;
+              display: flex;
+              align-items: center;
+            }
+            .social-links a {
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              margin-right: 1.2rem;
+              width: 2rem;
+              height: 2rem;
+              color: var(--text-color);
+              transition: all 0.3s ease;
+            }
+            .social-links a i {
+              font-size: 1.5rem;
+            }
+            .theme-aware-icon {
+              width: 1.5rem;
+              height: 1.5rem;
+              vertical-align: middle;
+              filter: invert(0);
+              transition: filter 0.3s ease;
+            }
+            html.dark-theme .theme-aware-icon {
+              filter: invert(1);
+            }
+            .social-links a:hover {
+              color: #e83151;
+              transform: scale(1.1);
+            }
+            .social-links a:hover .theme-aware-icon {
+              filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(335deg) brightness(91%) contrast(92%);
+            }
+            html.dark-theme .social-links a:hover .theme-aware-icon {
+              filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(335deg) brightness(131%) contrast(92%);
+            }
+          </style>
         </div>
         <div class="footer-right">
           <div class="footer-links">

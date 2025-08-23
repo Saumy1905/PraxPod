@@ -7,16 +7,33 @@
   const menuToggle = document.getElementById('menu-toggle');
   const nav = document.getElementById('site-nav');
 
-  // Apply saved theme - now done via inline script in head
-  // This is still here for compatibility, but the main
-  // application now happens in the head script to prevent flash
+  // Update toggle button icon based on current theme
+  function updateThemeToggleIcon() {
+    if (!toggleBtn) return;
+    
+    const isDarkTheme = root.classList.contains('dark-theme');
+    toggleBtn.innerHTML = isDarkTheme ? 
+      '<i class="fas fa-sun"></i>' : 
+      '<i class="fas fa-moon"></i>';
+    toggleBtn.setAttribute('aria-label', isDarkTheme ? 'Switch to light theme' : 'Switch to dark theme');
+  }
+
+  // Set initial icon state
+  updateThemeToggleIcon();
 
   // Toggle theme
   if (toggleBtn) {
     toggleBtn.addEventListener('click', () => {
-      body.classList.toggle('dark-theme');
+      // Toggle classes on both root and body elements
       root.classList.toggle('dark-theme');
-      localStorage.setItem(THEME_KEY, root.classList.contains('dark-theme') ? 'dark' : 'light');
+      body.classList.toggle('dark-theme');
+      
+      // Store preference
+      const isDarkTheme = root.classList.contains('dark-theme');
+      localStorage.setItem(THEME_KEY, isDarkTheme ? 'dark' : 'light');
+      
+      // Update the toggle button icon
+      updateThemeToggleIcon();
     });
   }
 

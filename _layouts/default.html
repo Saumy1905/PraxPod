@@ -13,9 +13,35 @@ layout: nil
     (function() {
       // Check localStorage for theme preference
       var savedTheme = localStorage.getItem('praxpod-theme');
-      if (savedTheme === 'dark') {
+      var isDarkTheme = savedTheme === 'dark';
+      
+      // Apply theme class if dark theme is preferred
+      if (isDarkTheme) {
         document.documentElement.classList.add('dark-theme');
         document.body.classList.add('dark-theme');
+      } else if (savedTheme === 'light') {
+        // Explicitly remove dark-theme class if light theme is stored
+        document.documentElement.classList.remove('dark-theme');
+        document.body.classList.remove('dark-theme');
+      }
+      
+      // Function to update the theme toggle icon after DOM is loaded
+      function updateToggleIcon() {
+        var toggleBtn = document.getElementById('theme-toggle');
+        if (toggleBtn) {
+          toggleBtn.innerHTML = isDarkTheme ? 
+            '<i class="fas fa-sun"></i>' : 
+            '<i class="fas fa-moon"></i>';
+          toggleBtn.setAttribute('aria-label', isDarkTheme ? 
+            'Switch to light theme' : 'Switch to dark theme');
+        }
+      }
+      
+      // Set icon when DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', updateToggleIcon);
+      } else {
+        updateToggleIcon();
       }
     })();
   </script>

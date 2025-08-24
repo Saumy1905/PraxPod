@@ -183,6 +183,7 @@
         initScrollAnimations();
         initButtonEffects();
         optimizeAnimations();
+        initHeaderScrollBehavior();
       });
     } else {
       initRippleEffects();
@@ -190,6 +191,7 @@
       initScrollAnimations();
       initButtonEffects();
       optimizeAnimations();
+      initHeaderScrollBehavior();
     }
   }
 
@@ -205,5 +207,45 @@
       initCardTiltEffects();
     }, 250);
   });
+
+  // ==================== HEADER SCROLL FUNCTIONALITY ====================
+  
+  function initHeaderScrollBehavior() {
+    const header = document.querySelector('.site-header');
+    if (!header) return;
+    
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+    
+    function updateHeaderOnScroll() {
+      const currentScrollY = window.scrollY;
+      
+      // Determine scroll direction and amount
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down & past threshold - hide header
+        header.classList.add('header-hidden');
+      } else {
+        // Scrolling up or at top - show header
+        header.classList.remove('header-hidden');
+      }
+      
+      lastScrollY = currentScrollY;
+      ticking = false;
+    }
+    
+    // Add scroll event with throttling for better performance
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateHeaderOnScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  }
+  
+  // Initialize header scroll behavior
+  initHeaderScrollBehavior();
 
 })();

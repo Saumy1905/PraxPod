@@ -93,7 +93,13 @@ h1, h2, h3, h4, h5, h6 { margin-bottom: 1rem; line-height: 1.3; color: var(--tex
   position: sticky;
   top: 0;
   z-index: 100;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Header hidden state for scroll behavior */
+.site-header.header-hidden {
+  transform: translateY(-100%);
+  box-shadow: none;
 }
 .site-header .container {
   display:flex; justify-content:space-between; align-items:center; padding:1rem 20px;

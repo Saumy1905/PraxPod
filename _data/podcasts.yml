@@ -229,7 +229,7 @@
       year: 2022
       audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/ml/ymca-ml-2022.mp3
       duration: "23:14"
-      published: 2025-08-22
+      published: 2025-09-19
     - id: ymca-ml-2023
       title: YMCA Machine Learning 2023
       college: ymca
@@ -237,7 +237,15 @@
       year: 2023
       audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/ml/ymca-ml-2023.mp3
       duration: "29:36"
-      published: 2025-08-22
+      published: 2025-09-19
+    - id: ymca-som-1-2024
+      title: YMCA Strength of Materials 1 2024
+      college: ymca
+      branch: som-1
+      year: 2024
+      audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/som-1/ymca-som-1-2024.mp3
+      duration: "18:42"
+      published: 2025-09-19
     - id: nit-kur-env-science-2023
       title: NIT Kurukshetra Environmental Science 2023
       college: nit-kur

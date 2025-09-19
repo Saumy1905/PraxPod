@@ -222,6 +222,22 @@
       audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/thermodynamics/ymca-thermodynamics-2022.mp3
       duration: "24:03"
       published: 2025-08-22
+    - id: ymca-ml-2022
+      title: YMCA Machine Learning 2022
+      college: ymca
+      branch: ml
+      year: 2022
+      audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/ml/ymca-ml-2022.mp3
+      duration: "23:14"
+      published: 2025-08-22
+    - id: ymca-ml-2023
+      title: YMCA Machine Learning 2023
+      college: ymca
+      branch: ml
+      year: 2023
+      audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/ml/ymca-ml-2023.mp3
+      duration: "29:36"
+      published: 2025-08-22
     - id: nit-kur-env-science-2023
       title: NIT Kurukshetra Environmental Science 2023
       college: nit-kur

@@ -246,6 +246,46 @@
       audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/som-1/ymca-som-1-2024.mp3
       duration: "18:42"
       published: 2025-09-19
+    - id: ymca-dom-2022-mid-1
+      title: YMCA Dynamics of Machines 2022 Mid 1
+      college: ymca
+      branch: dom
+      year: 2022
+      audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/dom/ymca-dom-2022-mid-1.mp3
+      duration: "10:08"
+      published: 2025-09-19
+    - id: ymca-dme-2022-mid-1
+      title: YMCA Design of Machine Elements 2022 Mid 1
+      college: ymca
+      branch: dme
+      year: 2022
+      audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/dme/ymca-dme-2022-mid-1.mp3
+      duration: "16:39"
+      published: 2025-09-19
+    - id: ymca-hmt-2022-mid-1
+      title: YMCA Heat and Mass Transfer 2022 Mid 1
+      college: ymca
+      branch: hmt
+      year: 2022
+      audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/hmt/ymca-hmt-2022-mid-1.mp3
+      duration: "11:28"
+      published: 2025-09-19
+    - id: ymca-industrial-engineering-2022-mid-1
+      title: YMCA Industrial Engineering 2022 Mid 1
+      college: ymca
+      branch: industrial-engineering
+      year: 2022
+      audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/industrial-engineering/ymca-industrial-engineering-2022-mid-1.mp3
+      duration: "13:11"
+      published: 2025-09-19
+    - id: ymca-rac-2022-mid-1
+      title: YMCA Refrigeration and Air Conditioning 2022 Mid 1
+      college: ymca
+      branch: rac
+      year: 2022
+      audio_url: /PraxPod/assets/audio/pyq-discussions/ymca/rac/ymca-rac-2022-mid-1.mp3
+      duration: "15:00"
+      published: 2025-09-19
     - id: nit-kur-env-science-2023
       title: NIT Kurukshetra Environmental Science 2023
       college: nit-kur
